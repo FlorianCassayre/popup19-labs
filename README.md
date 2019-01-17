@@ -12,7 +12,7 @@ Popup19 Labs
 | [Longest Increasing Subsequence](https://kth.kattis.com/problems/longincsubseq) |  |
 | [Partial Linear Equation Solver](https://kth.kattis.com/problems/equationsolverplus) |  |
 | [Polynomial Multiplication 2](https://kth.kattis.com/problems/polymul2) |  |
-| [Rationale Arithmetic](https://kth.kattis.com/problems/rationalarithmetic) |  |
+| [Rational Arithmetic](https://kth.kattis.com/problems/rationalarithmetic) | 0.09 s |
 | [Union-Find](https://kth.kattis.com/problems/unionfind) |  |
 
 ### Lab 2
