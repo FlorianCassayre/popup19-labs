@@ -8,6 +8,7 @@
 package se.kth.popup.intervalcover;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public final class IntervalUtils {
     private IntervalUtils() {}
@@ -21,28 +22,34 @@ public final class IntervalUtils {
     public static Set<Integer> cover(Interval interval, Interval[] intervals) {
 
         // FIXME preserve the indices before sorting!
-        Arrays.sort(intervals, Comparator.comparingDouble(i -> i.a)); // Sort the intervals by their lower bound, O(n log n)
+        final Integer[] indices = new Integer[intervals.length];
+        for(int i = 0; i < indices.length; i++)
+            indices[i] = i;
+        Arrays.sort(indices, Comparator.comparingDouble(i -> intervals[i].a)); // Sort the intervals by their lower bound, O(n log n)
+        final Interval[] sorted = new Interval[intervals.length];
+        for(int i = 0; i < sorted.length; i++)
+            sorted[i] = intervals[indices[i]];
 
         final Set<Integer> set = new HashSet<>();
 
-        if(intervals.length == 0) // Impossible (no intervals to cover with)
+        if(sorted.length == 0) // Impossible (no intervals to cover with)
             return set;
 
         // Check if it is possible
         double largestLeft = 0, largestRight = 0;
         int largestLeftIndex = -1, largestRightIndex = -1;
-        for(int i = 0; i < intervals.length && intervals[i].a <= interval.a; i++) {
-            if(intervals[i].b >= interval.a && (largestLeftIndex == -1 || intervals[i].b > largestLeft)) {
-                largestLeft = intervals[i].b;
+        for(int i = 0; i < sorted.length && sorted[i].a <= interval.a; i++) {
+            if(sorted[i].b >= interval.a && (largestLeftIndex == -1 || sorted[i].b > largestLeft)) {
+                largestLeft = sorted[i].b;
                 largestLeftIndex = i;
             }
         }
         if(largestLeftIndex == -1)
             return set; // Impossible (cannot cover left side)
 
-        for(int i = intervals.length - 1; i >= 0 && intervals[i].b >= interval.b; i--) {
-            if(intervals[i].b >= interval.b && (largestRightIndex == -1 || intervals[i].a < largestRight)) {
-                largestRight = intervals[i].b;
+        for(int i = sorted.length - 1; i >= 0 && sorted[i].b >= interval.b; i--) {
+            if(sorted[i].b >= interval.b && (largestRightIndex == -1 || sorted[i].a < largestRight)) {
+                largestRight = sorted[i].b;
                 largestRightIndex = i;
             }
         }
@@ -51,14 +58,14 @@ public final class IntervalUtils {
 
         int index = largestLeftIndex, start = largestLeftIndex + 1;
         set.add(largestLeftIndex);
-        while(intervals[index].b < interval.b) {
+        while(sorted[index].b < interval.b) {
             double bestValue = 0;
             int bestIndex = -1;
 
-            for(int i = start; i < intervals.length && intervals[i].a <= intervals[index].b; i++) {
+            for(int i = start; i < sorted.length && sorted[i].a <= sorted[index].b; i++) {
                 start = i + 1;
-                if(intervals[i].b >= intervals[index].a && (bestIndex == -1 || intervals[i].b > bestValue)) {
-                    bestValue = intervals[i].b;
+                if(sorted[i].b >= sorted[index].a && (bestIndex == -1 || sorted[i].b > bestValue)) {
+                    bestValue = sorted[i].b;
                     bestIndex = i;
                 }
             }
@@ -70,6 +77,7 @@ public final class IntervalUtils {
             index = bestIndex;
         }
 
-        return set;
+
+        return set.stream().map(i -> indices[i]).collect(Collectors.toSet());
     }
 }

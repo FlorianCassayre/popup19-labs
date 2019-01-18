@@ -28,7 +28,7 @@ public class IntervalCoverTest extends KattisTester {
         assertEquals(set(0), IntervalUtils.cover(new Interval(0.0, 1.0), new Interval[] { new Interval(-100.0, 1.0) }));
         assertEquals(set(), IntervalUtils.cover(new Interval(0.0, 1.0), new Interval[] { new Interval(0.5, 100.0) }));
         assertEquals(set(0), IntervalUtils.cover(new Interval(0.0, 1.0), new Interval[] { new Interval(0.0, 100.0) }));
-        assertEquals(set(0, 1), IntervalUtils.cover(new Interval(0.0, 1.0), new Interval[] { new Interval(-1.0, 0.5), new Interval(0.5, 1.0), new Interval(-100.0, 0.99) }));
+        assertEquals(set(1, 2), IntervalUtils.cover(new Interval(0.0, 1.0), new Interval[] { new Interval(0.1, 0.5), new Interval(0.5, 1.0), new Interval(-100.0, 0.99) }));
     }
 
     <T> Set<? extends T> set(T... elements) {
