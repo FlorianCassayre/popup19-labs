@@ -16,7 +16,7 @@ public class BinaryIndexedTree {
      * @param n the size of the array
      */
     public BinaryIndexedTree(int n) {
-        this.array = new long[n + 1];
+        this.array = new long[n];
     }
 
     /**
@@ -25,8 +25,11 @@ public class BinaryIndexedTree {
      * @param delta the number to add
      */
     public void add(int i, long delta) {
+        if(i < 0 || i >= array.length)
+            throw new IndexOutOfBoundsException(String.valueOf(i));
+
         i++;
-        while(i < array.length) {
+        while(i <= array.length) {
             array[i - 1] += delta;
             i += Integer.lowestOneBit(i);
         }
@@ -39,7 +42,10 @@ public class BinaryIndexedTree {
      * @return the computed prefix sum
      */
     public long sum(int end) {
-        int sum = 0;
+        if(end < 0 || end > array.length)
+            throw new IndexOutOfBoundsException(String.valueOf(end));
+
+        long sum = 0;
         while(end > 0) {
             sum += array[end - 1];
             end -= Integer.lowestOneBit(end);
