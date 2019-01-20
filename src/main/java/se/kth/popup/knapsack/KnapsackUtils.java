@@ -21,32 +21,34 @@ public final class KnapsackUtils {
      * @return a set of the chosen items
      */
     public static Set<Integer> knapsack(int capacity, int[] values, int[] weights) {
+        if(capacity < 0)
+            throw new IllegalArgumentException();
         if(values.length != weights.length)
             throw new IllegalArgumentException();
 
         final int n = values.length;
 
-        final List<Set<Integer>> solutions = new ArrayList<>(capacity + 1);
+        final List<BitSet> solutions = new ArrayList<>(capacity + 1);
         final int[] solutionsValues = new int[capacity + 1];
 
         // Base case
-        solutions.add(new HashSet<>());
+        solutions.add(new BitSet());
         solutionsValues[0] = 0;
 
         for(int c = 1; c <= capacity; c++) {
 
-            Set<Integer> bestSet = solutions.get(c - 1);
+            BitSet bestSet = solutions.get(c - 1);
             int bestValue = solutionsValues[c - 1];
 
             for(int i = 0; i < n; i++) {
                 final int previousWeight = c - weights[i];
                 if(previousWeight >= 0) { // Item can enter a knapsack of capacity `c`
-                    final Set<Integer> set = solutions.get(previousWeight);
-                    if(!set.contains(i)) { // This knapsack does not contain the item, yet
+                    final BitSet set = solutions.get(previousWeight);
+                    if(!set.get(i)) { // This knapsack does not contain the item, yet
                         final int value = solutionsValues[previousWeight] + values[i];
                         if(value > bestValue) { // FIXME potentially greedy!!
-                            bestSet = new HashSet<>(set);
-                            bestSet.add(i);
+                            bestSet = (BitSet) set.clone();
+                            bestSet.set(i);
 
                             bestValue = value;
                         }
@@ -58,6 +60,12 @@ public final class KnapsackUtils {
             solutionsValues[c] = bestValue;
         }
 
-        return solutions.get(capacity);
+        final Set<Integer> set = new HashSet<>();
+        for(int i = 0; i < n; i++) {
+            if(solutions.get(capacity).get(i))
+                set.add(i);
+        }
+
+        return set;
     }
 }
