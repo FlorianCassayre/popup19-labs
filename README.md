@@ -13,7 +13,7 @@ Popup19 Labs
 | [Partial Linear Equation Solver](https://kth.kattis.com/problems/equationsolverplus) |  |
 | [Polynomial Multiplication 2](https://kth.kattis.com/problems/polymul2) |  |
 | [Rational Arithmetic](https://kth.kattis.com/problems/rationalarithmetic) | [python](Python/Lab%201/Rational%20Arithmetic/rational.py) |
-| [Union-Find](https://kth.kattis.com/problems/unionfind) |  |
+| [Union-Find](https://kth.kattis.com/problems/unionfind) | [java](src/main/java/se/kth/popup/unionfind/UnionFindMain.java) |
 
 ### Lab 2
 
