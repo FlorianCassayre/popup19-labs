@@ -5,7 +5,7 @@
  * - Eduardo Rodes Pastor (9406031931)
  * - Florian Cassayre (980703T092)
  */
-package main;
+package se.kth.popup.knapsack;
 
 import java.util.List;
 import java.util.ArrayList;
