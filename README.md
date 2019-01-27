@@ -7,7 +7,7 @@ Popup19 Labs
 | :---: | :---: |
 | [Fenwick Tree](https://kth.kattis.com/problems/fenwick) | [java](src/main/java/se/kth/popup/fenwick/FenwickTree.java) |
 | [Internal Cover](https://kth.kattis.com/problems/intervalcover) |  |
-| [Knapsack](https://kth.kattis.com/problems/knapsack) |  |
+| [Knapsack](https://kth.kattis.com/problems/knapsack) | [java](src/main/java/se/kth/popup/knapsack/Knapsack.java) |
 | [Linear Equation Solver](https://kth.kattis.com/problems/equationsolver) |  |
 | [Longest Increasing Subsequence](https://kth.kattis.com/problems/longincsubseq) |  |
 | [Partial Linear Equation Solver](https://kth.kattis.com/problems/equationsolverplus) |  |
