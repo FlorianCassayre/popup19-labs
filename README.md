@@ -6,7 +6,7 @@ Popup19 Labs
 | Problem | Solution |
 | :---: | :---: |
 | [Fenwick Tree](https://kth.kattis.com/problems/fenwick) | [java](src/main/java/se/kth/popup/fenwick/FenwickTree.java) |
-| [Internal Cover](https://kth.kattis.com/problems/intervalcover) |  |
+| [Internal Cover](https://kth.kattis.com/problems/intervalcover) | [java](src/main/java/se/kth/popup/intervalcover/IntervalCover.java) |
 | [Knapsack](https://kth.kattis.com/problems/knapsack) | [java](src/main/java/se/kth/popup/knapsack/Knapsack.java) |
 | [Linear Equation Solver](https://kth.kattis.com/problems/equationsolver) |  |
 | [Longest Increasing Subsequence](https://kth.kattis.com/problems/longincsubseq) |  |

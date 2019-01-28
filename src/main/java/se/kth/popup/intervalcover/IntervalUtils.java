@@ -21,7 +21,6 @@ public final class IntervalUtils {
      */
     public static Set<Integer> cover(Interval interval, Interval[] intervals) {
 
-        // FIXME preserve the indices before sorting!
         final Integer[] indices = new Integer[intervals.length];
         for(int i = 0; i < indices.length; i++)
             indices[i] = i;
@@ -36,47 +35,32 @@ public final class IntervalUtils {
             return set;
 
         // Check if it is possible
-        double largestLeft = 0, largestRight = 0;
-        int largestLeftIndex = -1, largestRightIndex = -1;
+        int largestLeft = -1;
         for(int i = 0; i < sorted.length && sorted[i].a <= interval.a; i++) {
-            if(sorted[i].b >= interval.a && (largestLeftIndex == -1 || sorted[i].b > largestLeft)) {
-                largestLeft = sorted[i].b;
-                largestLeftIndex = i;
+            if(sorted[i].b >= interval.a && (largestLeft == -1 || sorted[i].b > sorted[largestLeft].b)) {
+                largestLeft = i;
             }
         }
-        if(largestLeftIndex == -1)
+        if(largestLeft == -1)
             return set; // Impossible (cannot cover left side)
 
-        for(int i = sorted.length - 1; i >= 0 && sorted[i].b >= interval.b; i--) {
-            if(sorted[i].b >= interval.b && (largestRightIndex == -1 || sorted[i].a < largestRight)) {
-                largestRight = sorted[i].b;
-                largestRightIndex = i;
+        set.add(largestLeft);
+
+        while(largestLeft < sorted.length && sorted[largestLeft].b < interval.b) {
+            int bestNext = -1;
+            for(int j = largestLeft + 1; j < sorted.length && sorted[j].a <= sorted[largestLeft].b; j++) {
+                if(sorted[j].b > sorted[largestLeft].b && (bestNext == -1 || sorted[j].b > sorted[bestNext].b))
+                    bestNext = j;
             }
-        }
-        if(largestRightIndex == -1)
-            return set; // Impossible (cannot cover right side)
-
-        int index = largestLeftIndex, start = largestLeftIndex + 1;
-        set.add(largestLeftIndex);
-        while(sorted[index].b < interval.b) {
-            double bestValue = 0;
-            int bestIndex = -1;
-
-            for(int i = start; i < sorted.length && sorted[i].a <= sorted[index].b; i++) {
-                start = i + 1;
-                if(sorted[i].b >= sorted[index].a && (bestIndex == -1 || sorted[i].b > bestValue)) {
-                    bestValue = sorted[i].b;
-                    bestIndex = i;
-                }
-            }
-
-            if(bestIndex == -1) // Impossible (no intervals were found)
+            if(bestNext == -1)
                 return new HashSet<>();
 
-            set.add(bestIndex);
-            index = bestIndex;
+            set.add(bestNext);
+            largestLeft = bestNext;
         }
 
+        if(sorted[largestLeft].b < interval.b) // Impossible (cannot cover right side)
+            return new HashSet<>();
 
         return set.stream().map(i -> indices[i]).collect(Collectors.toSet());
     }
