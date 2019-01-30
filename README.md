@@ -9,7 +9,7 @@ Popup19 Labs
 | [Internal Cover](https://kth.kattis.com/problems/intervalcover) | [java](src/main/java/se/kth/popup/intervalcover/IntervalCover.java) |
 | [Knapsack](https://kth.kattis.com/problems/knapsack) | [java](src/main/java/se/kth/popup/knapsack/Knapsack.java) |
 | [Linear Equation Solver](https://kth.kattis.com/problems/equationsolver) |  |
-| [Longest Increasing Subsequence](https://kth.kattis.com/problems/longincsubseq) |  |
+| [Longest Increasing Subsequence](https://kth.kattis.com/problems/longincsubseq) | [java](src/main/java/se/kth/popup/longestsequence/LIS.java) |
 | [Partial Linear Equation Solver](https://kth.kattis.com/problems/equationsolverplus) |  |
 | [Polynomial Multiplication 2](https://kth.kattis.com/problems/polymul2) |  |
 | [Rational Arithmetic](https://kth.kattis.com/problems/rationalarithmetic) | [python](Python/Lab%201/Rational%20Arithmetic/rational.py) |
