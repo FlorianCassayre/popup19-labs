@@ -55,7 +55,7 @@ public final class EquationSolver {
     }
 
     private static boolean nonZero(double x) {
-        return Math.abs(x) > 1e-60;
+        return Math.abs(x) > 1e-10;
     }
 
     public static final class EquationSolution {
@@ -63,19 +63,17 @@ public final class EquationSolver {
         private final boolean consistent;
 
         public EquationSolution(int n, int rank, double[][] matrix) {
-            if(nonZero(matrix[n - 1][n - 1])) { // Solution exists and is unique
+            if(rank == n) { // Solution exists and is unique
                 solution = new double[n];
                 for(int i = 0; i < n; i++) {
                     solution[i] = matrix[i][n];
                 }
                 consistent = true;
-            }
-            else { // Solution might exist, but if so it is not unique
+            } else { // Solution might exist, but if so it is not unique
                 solution = null;
                 boolean inconsistent = false;
                 for(int i = rank; i < n && !inconsistent; i++)
-                    for(int j = 0; j < n + 1 && !inconsistent; j++)
-                        if(nonZero(matrix[i][j]))
+                        if(nonZero(matrix[i][n]))
                             inconsistent = true;
                 consistent = !inconsistent;
             }
