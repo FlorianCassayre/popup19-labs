@@ -12,7 +12,7 @@ Popup19 Labs
 | [Longest Increasing Subsequence](https://kth.kattis.com/problems/longincsubseq) | [java](src/main/java/se/kth/popup/longestsequence/LIS.java) |
 | [Partial Linear Equation Solver](https://kth.kattis.com/problems/equationsolverplus) |  |
 | [Polynomial Multiplication 2](https://kth.kattis.com/problems/polymul2) |  |
-| [Rational Arithmetic](https://kth.kattis.com/problems/rationalarithmetic) | [python](Python/Lab%201/Rational%20Arithmetic/rational.py) |
+| [Rational Arithmetic](https://kth.kattis.com/problems/rationalarithmetic) | [python](Python/Lab%201/Rational%20Arithmetic/rational.py), [java](src/main/java/se/kth/popup/rationalarithmetic/RationalArithmetic.java) |
 | [Union-Find](https://kth.kattis.com/problems/unionfind) | [java](src/main/java/se/kth/popup/unionfind/UnionFindMain.java) |
 
 ### Lab 2
