@@ -5,7 +5,7 @@
  * - Eduardo Rodes Pastor (9406031931)
  * - Florian Cassayre (980703T092)
  */
-package se.kth.popup.rationalarithmetic;
+package se.kth.popup.lab1.rationalarithmetic;
 
 import java.math.BigInteger;
 import java.util.Objects;

@@ -5,7 +5,7 @@
  * - Eduardo Rodes Pastor (9406031931)
  * - Florian Cassayre (980703T092)
  */
-package se.kth.popup.longestsequence;
+package se.kth.popup.lab1.longestsequence;
 
 import java.util.Arrays; 
 
