@@ -19,7 +19,15 @@ Popup19 Labs
 
 | Problem | Solution |
 | :---: | :---: |
-| []() |  |
+| [Single Source Shortest Paths (non-negative weigths)](https://kth.kattis.com/problems/shortestpath1) |  |
+| [Single Source Shortest Paths (time-table search)](https://kth.kattis.com/problems/shortestpath2) |  |
+| [Single Source Shortest Paths (negative weights)](https://kth.kattis.com/problems/shortestpath3) |  |
+| [All Pairs Shortest Paths](https://kth.kattis.com/problems/allpairspath) |  |
+| [Minimal Spanning Tree](https://kth.kattis.com/problems/minspantree) |  |
+| [Maximum Flow](https://kth.kattis.com/problems/maxflow) |  |
+| [Minimum Cut](https://kth.kattis.com/problems/mincut) |  |
+| [Minimum Cost Maximum Flow](https://kth.kattis.com/problems/mincostmaxflow) |  |
+| [Eulerian Walk](https://kth.kattis.com/problems/eulerianpath) |  |
 
 ### Lab 3
 
