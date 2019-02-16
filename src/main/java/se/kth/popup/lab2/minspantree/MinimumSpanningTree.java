@@ -7,6 +7,8 @@
  */
 package se.kth.popup.lab2.minspantree;
 
+import se.kth.popup.lab2.MinHeap;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,15 @@ public final class MinimumSpanningTree {
     public static Solution mst(int n, List<Edge> edges) {
         // Prim's algorithm with min-heap
 
+        final Map<Integer, List<Edge>> map = new HashMap<>();
+        for(int i = 0; i < n; i++)
+            map.put(i, new ArrayList<>());
+
+        edges.forEach(e -> {
+            map.get(e.x).add(e);
+            map.get(e.y).add(e);
+        });
+
         final long[] costs = new long[n];
         final int[] prevs = new int[n];
         for(int i = 0; i < costs.length; i++) {
@@ -23,19 +34,18 @@ public final class MinimumSpanningTree {
             prevs[i] = -1;
         }
 
-        final PriorityQueue<Integer> queue = new PriorityQueue<>(n, Comparator.comparingLong(l -> costs[l]));
+        final MinHeap<Integer> queue = new MinHeap<>(Comparator.comparingLong(l -> costs[l]));
         for(int i = 0; i < n; i++)
             queue.add(i);
 
         while(!queue.isEmpty()) {
             final int v = queue.poll();
-            edges.stream().filter(e -> e.x == v || e.y == v).forEach(edge -> {
+            map.get(v).forEach(edge -> {
                 final int u = edge.x != v ? edge.x : edge.y;
                 if(queue.contains(u) && edge.weight < costs[u]) {
                     prevs[u] = v;
-                    queue.remove(u);
                     costs[u] = edge.weight;
-                    queue.add(u);
+                    queue.decreaseKeyElement(u);
                 }
             });
         }
