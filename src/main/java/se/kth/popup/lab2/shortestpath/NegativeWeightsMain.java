@@ -14,12 +14,7 @@ import java.util.List;
 
 public class NegativeWeightsMain {
     public static void run(Kattio kattio) {
-        boolean first = true;
         while(true) {
-            if(!first)
-                kattio.println();
-            first = !first;
-
             final int n = kattio.getInt(), m = kattio.getInt(), q = kattio.getInt(), s = kattio.getInt();
 
             if(n == 0 && m == 0 && q == 0 && s == 0)
@@ -45,6 +40,8 @@ public class NegativeWeightsMain {
                     kattio.println(distance);
                 }
             }
+
+            kattio.println();
         }
 
         kattio.close();

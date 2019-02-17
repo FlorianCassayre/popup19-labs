@@ -7,6 +7,7 @@
  */
 package se.kth.popup.lab2.shortestpath;
 
+import java.util.BitSet;
 import java.util.List;
 
 public final class BellmanFord {
@@ -34,7 +35,7 @@ public final class BellmanFord {
         distances[s] = 0; // Source
 
         // Relaxation
-        for(int i = 0; i < n - 1; i++)
+        for(int i = 0; i < 2 * n; i++)
             for(Edge edge : edges)
                 if(distances[edge.u] < Integer.MAX_VALUE && distances[edge.u] + edge.weight < distances[edge.v]) {
                     distances[edge.v] = distances[edge.u] + edge.weight;
@@ -42,9 +43,18 @@ public final class BellmanFord {
                 }
 
         // Negative cycles
-        for(Edge edge : edges)
-            if(distances[edge.u] < Integer.MAX_VALUE && distances[edge.u] + edge.weight < distances[edge.v])
-                distances[edge.u] = Integer.MIN_VALUE;
+        for(int i = 0; i < n; i++) {
+            final BitSet set = new BitSet(n);
+            int node = i;
+            do {
+                if(set.get(node)) {
+                    distances[i] = Integer.MIN_VALUE;
+                    break;
+                } else {
+                    set.set(node);
+                }
+            } while((node = parents[node]) != -1);
+        }
 
         return new Solution(n, distances, parents);
     }
