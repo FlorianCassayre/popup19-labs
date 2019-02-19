@@ -19,7 +19,7 @@ Popup19 Labs
 
 | Problem | Solution |
 | :---: | :---: |
-| [Single Source Shortest Paths (non-negative weigths)](https://kth.kattis.com/problems/shortestpath1) |  |
+| [Single Source Shortest Paths (non-negative weigths)](https://kth.kattis.com/problems/shortestpath1) | [java](src/main/java/se/kth/popup/lab2/shortestpath/NonNegativeWeightsMain.java) |
 | [Single Source Shortest Paths (time-table search)](https://kth.kattis.com/problems/shortestpath2) |  |
 | [Single Source Shortest Paths (negative weights)](https://kth.kattis.com/problems/shortestpath3) |  |
 | [All Pairs Shortest Paths](https://kth.kattis.com/problems/allpairspath) |  |
