@@ -36,7 +36,7 @@ public class MinimumSpanningTreeMain {
             if(solution != null) {
                 kattio.println(solution.weight);
                 for(MinimumSpanningTree.Edge edge : solution.edges)
-                    kattio.println(edge.x + " " + edge.y);
+                    kattio.println(edge.u + " " + edge.v);
             } else {
                 kattio.println("Impossible");
             }
