@@ -13,25 +13,6 @@ public final class FloydWarshall {
         for(Edge edge : edges)
             matrix[edge.u][edge.v] = (edge.u == edge.v && edge.weight > 0) ? 0 : edge.weight;
 
-        fill(n, matrix);
-
-        final int[][] copy = new int[n][n];
-
-        for(int i = 0; i < n; i++)
-            for(int j = 0; j < n; j++)
-                copy[i][j] = matrix[i][j];
-
-        fill(n, matrix);
-
-        for(int i = 0; i < n; i++)
-            for(int j = 0; j < n; j++)
-                if(matrix[i][j] < copy[i][j])
-                    matrix[i][j] = Integer.MIN_VALUE;
-
-        return matrix;
-    }
-
-    private static void fill(int n, int[][] matrix) {
         for(int k = 0; k < n; k++)
             for(int i = 0; i < n; i++)
                 for(int j = 0; j < n; j++) {
@@ -39,6 +20,14 @@ public final class FloydWarshall {
                             sum = a < Integer.MAX_VALUE && b < Integer.MAX_VALUE ? a + b : Integer.MAX_VALUE;
                     matrix[i][j] = Math.min(matrix[i][j], sum);
                 }
+
+        for(int k = 0; k < n; k++)
+            for(int i = 0; i < n; i++)
+                for(int j = 0; j < n; j++)
+                    if(matrix[k][j] < Integer.MAX_VALUE && matrix[j][j] < 0 && matrix[j][i] < Integer.MAX_VALUE)
+                        matrix[k][i] = Integer.MIN_VALUE;
+
+        return matrix;
     }
 
     public static final class Edge {
