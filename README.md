@@ -23,7 +23,7 @@ Popup19 Labs
 | [Single Source Shortest Paths (time-table search)](https://kth.kattis.com/problems/shortestpath2) |  |
 | [Single Source Shortest Paths (negative weights)](https://kth.kattis.com/problems/shortestpath3) |  |
 | [All Pairs Shortest Paths](https://kth.kattis.com/problems/allpairspath) |  |
-| [Minimal Spanning Tree](https://kth.kattis.com/problems/minspantree) |  |
+| [Minimal Spanning Tree](https://kth.kattis.com/problems/minspantree) | [java](src/main/java/se/kth/popup/lab2/minspantree/MinimumSpanningTreeMain.java) |
 | [Maximum Flow](https://kth.kattis.com/problems/maxflow) |  |
 | [Minimum Cut](https://kth.kattis.com/problems/mincut) |  |
 | [Minimum Cost Maximum Flow](https://kth.kattis.com/problems/mincostmaxflow) |  |

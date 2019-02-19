@@ -12,8 +12,15 @@ import java.util.*;
 public final class MinimumSpanningTree {
     private MinimumSpanningTree() {}
 
+    /**
+     * Computes the minimum spanning tree of an undirected graph.
+     * @param n the number of vertices
+     * @param edges the undirected edges
+     * @return the corresponding tree and its total weight if the solution exists,
+     * otherwise <code>null</code>. Edges are sorted in lexicographical order.
+     */
     public static Solution mst(int n, List<Edge> edges) {
-        // Prim's algorithm with min-heap
+        // Prim's algorithm with priority queue
 
         final List<List<Edge>> adjacency = new ArrayList<>(n);
         for(int i = 0; i < n; i++)
@@ -35,25 +42,25 @@ public final class MinimumSpanningTree {
 
         int weight = 0;
 
-        while(!queue.isEmpty()) {
-            final Edge e = queue.poll();
+        while(!queue.isEmpty()) { // While there are still potential vertices to connect
+            final Edge e = queue.poll(); // The edge which vertex is the closest to that tree
 
-            final int v;
+            final int v; // The vertex outside the tree
             if(!visited.get(e.v))
                 v = e.v;
             else if(!visited.get(e.u))
                 v = e.u;
             else
-                continue;
+                continue; // Would create a cycle
 
             tree.add(e);
             weight += e.weight;
             visited.set(v);
 
-            queue.addAll(adjacency.get(e.v));
+            queue.addAll(adjacency.get(v)); // Update the queue by adding new vertices that can be connected
         }
 
-        return tree.size() == n - 1 ? new Solution(tree, weight) : null;
+        return tree.size() == n - 1 ? new Solution(tree, weight) : null; // A spanning tree is guaranteed to have n-1 edges
     }
 
     public static final class Solution {
