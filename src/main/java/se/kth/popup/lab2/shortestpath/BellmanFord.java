@@ -7,8 +7,7 @@
  */
 package se.kth.popup.lab2.shortestpath;
 
-import java.util.BitSet;
-import java.util.List;
+import java.util.*;
 
 public final class BellmanFord {
     private BellmanFord() {}
@@ -21,7 +20,8 @@ public final class BellmanFord {
      * @param s the source vertex
      * @return a solution containing the costs and the paths;
      * a distance of <code>Integer.MAX_VALUE</code> indicates an impossible path
-     * while <code>Integer.MAX_VALUE</code> means that there is a negatives cycle
+     * while <code>Integer.MIN_VALUE</code> means that the cost of the path can be
+     * made arbitrarily low. The paths are stored in a tree
      */
     public static Solution shortestPath(int n, List<Edge> edges, int s) {
         final int[] distances = new int[n], parents = new int[n];
@@ -34,26 +34,39 @@ public final class BellmanFord {
 
         distances[s] = 0; // Source
 
+        List<Integer> negative = new ArrayList<>();
+        final BitSet visitedCycles = new BitSet();
+
         // Relaxation
-        for(int i = 0; i < 2 * n; i++)
+        for(int i = 0; i <= n; i++)
             for(Edge edge : edges)
                 if(distances[edge.u] < Integer.MAX_VALUE && distances[edge.u] + edge.weight < distances[edge.v]) {
                     distances[edge.v] = distances[edge.u] + edge.weight;
                     parents[edge.v] = edge.u;
+                    if(i == n) { // Perform one more iteration to locate the vertices affected by negative cycles
+                        negative.add(edge.v);
+                        visitedCycles.set(edge.v);
+                    }
                 }
 
+        final Map<Integer, List<Integer>> adjacency = new HashMap<>();
+        for(int i = 0; i < n; i++)
+            adjacency.put(i, new ArrayList<>());
+        for(Edge edge : edges)
+            adjacency.get(edge.u).add(edge.v);
+
         // Negative cycles
-        for(int i = 0; i < n; i++) {
-            final BitSet set = new BitSet(n);
-            int node = i;
-            do {
-                if(set.get(node)) {
-                    distances[i] = Integer.MIN_VALUE;
-                    break;
-                } else {
-                    set.set(node);
-                }
-            } while((node = parents[node]) != -1);
+        while(!negative.isEmpty()) { // BFS
+            final List<Integer> temp = new ArrayList<>();
+            for(Integer u : negative) {
+                distances[u] = Integer.MIN_VALUE;
+                for(Integer v : adjacency.get(u))
+                    if(!visitedCycles.get(v)) {
+                        temp.add(v);
+                        visitedCycles.set(v);
+                    }
+            }
+            negative = temp;
         }
 
         return new Solution(n, distances, parents);
