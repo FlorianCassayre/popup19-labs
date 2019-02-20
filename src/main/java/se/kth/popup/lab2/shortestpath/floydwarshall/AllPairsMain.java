@@ -1,9 +1,10 @@
-package se.kth.popup.lab2.shortestpath;
+package se.kth.popup.lab2.shortestpath.floydwarshall;
 
 import se.kth.popup.Kattio;
 
 import java.util.ArrayList;
 import java.util.List;
+import se.kth.popup.lab2.Edge;
 
 public class AllPairsMain {
     public static void run(Kattio kattio) {
@@ -14,10 +15,10 @@ public class AllPairsMain {
             if(n == 0 && m == 0 && q == 0)
                 break;
 
-            final List<FloydWarshall.Edge> edges = new ArrayList<>(m);
+            final List<Edge> edges = new ArrayList<>(m);
             for(int i = 0; i < m; i++) {
                 final int u = kattio.getInt(), v = kattio.getInt(), weight = kattio.getInt();
-                edges.add(new FloydWarshall.Edge(u, v, weight));
+                edges.add(new Edge(u, v, weight));
             }
 
             final int[][] matrix = FloydWarshall.allPairsShortestPaths(n, edges);

@@ -5,7 +5,8 @@
  * - Eduardo Rodes Pastor (9406031931)
  * - Florian Cassayre (980703T092)
  */
-package se.kth.popup.lab2.minspantree;
+
+package se.kth.popup.lab2.shortestpath.minspantree;
 
 import java.util.*;
 
@@ -63,33 +64,7 @@ public final class MinimumSpanningTree {
         return tree.size() == n - 1 ? new Solution(tree, weight) : null; // A spanning tree is guaranteed to have n-1 edges
     }
 
-    public static final class Solution {
-        public final List<Edge> edges;
-        public final int weight;
 
-        private Solution(List<Edge> edges, int weight) {
-            Collections.sort(edges);
-            this.edges = Collections.unmodifiableList(edges);
-            this.weight = weight;
-        }
-    }
 
-    public static final class Edge implements Comparable<Edge> {
-        public final int u, v;
-        public final int weight;
 
-        public Edge(int u, int v, int weight) {
-            this.u = Math.min(u, v);
-            this.v = Math.max(u, v);
-            this.weight = weight;
-        }
-
-        @Override
-        public int compareTo(Edge that) {
-            if(this.u != that.u)
-                return Integer.compare(this.u, that.u);
-            else
-                return Integer.compare(this.v, that.v);
-        }
-    }
 }

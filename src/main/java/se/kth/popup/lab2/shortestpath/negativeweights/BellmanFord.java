@@ -5,9 +5,11 @@
  * - Eduardo Rodes Pastor (9406031931)
  * - Florian Cassayre (980703T092)
  */
-package se.kth.popup.lab2.shortestpath;
+
+package se.kth.popup.lab2.shortestpath.negativeweights;
 
 import java.util.*;
+import se.kth.popup.lab2.Edge;
 
 public final class BellmanFord {
     private BellmanFord() {}
@@ -72,25 +74,5 @@ public final class BellmanFord {
         return new Solution(n, distances, parents);
     }
 
-    public static final class Solution {
-        public final int n;
-        public final int[] distances, parents;
 
-        private Solution(int n, int[] distances, int[] parents) {
-            this.n = n;
-            this.distances = distances;
-            this.parents = parents;
-        }
-    }
-
-    public static final class Edge {
-        public final int u, v;
-        public final int weight;
-
-        public Edge(int u, int v, int weight) {
-            this.u = u;
-            this.v = v;
-            this.weight = weight;
-        }
-    }
 }

@@ -5,12 +5,13 @@
  * - Eduardo Rodes Pastor (9406031931)
  * - Florian Cassayre (980703T092)
  */
-package se.kth.popup.lab2.shortestpath;
+package se.kth.popup.lab2.shortestpath.negativeweights;
 
 import se.kth.popup.Kattio;
 
 import java.util.ArrayList;
 import java.util.List;
+import se.kth.popup.lab2.Edge;
 
 public class NegativeWeightsMain {
     public static void run(Kattio kattio) {
@@ -20,13 +21,13 @@ public class NegativeWeightsMain {
             if(n == 0 && m == 0 && q == 0 && s == 0)
                 break;
 
-            final List<BellmanFord.Edge> edges = new ArrayList<>(m);
+            final List<Edge> edges = new ArrayList<>(m);
             for(int i = 0; i < m; i++) {
                 final int u = kattio.getInt(), v = kattio.getInt(), w = kattio.getInt();
-                edges.add(new BellmanFord.Edge(u, v, w));
+                edges.add(new Edge(u, v, w));
             }
 
-            final BellmanFord.Solution solution = BellmanFord.shortestPath(n, edges, s);
+            final Solution solution = BellmanFord.shortestPath(n, edges, s);
 
             for(int i = 0; i < q; i++) {
                 final int to = kattio.getInt();

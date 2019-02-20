@@ -1,6 +1,7 @@
-package se.kth.popup.lab2.shortestpath;
+package se.kth.popup.lab2.shortestpath.floydwarshall;
 
 import java.util.List;
+import se.kth.popup.lab2.Edge;
 
 public final class FloydWarshall {
     private FloydWarshall() {}
@@ -28,16 +29,5 @@ public final class FloydWarshall {
                         matrix[k][i] = Integer.MIN_VALUE;
 
         return matrix;
-    }
-
-    public static final class Edge {
-        public final int u, v;
-        public final int weight;
-
-        public Edge(int u, int v, int weight) {
-            this.u = u;
-            this.v = v;
-            this.weight = weight;
-        }
     }
 }

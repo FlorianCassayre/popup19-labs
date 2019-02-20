@@ -5,7 +5,7 @@
  * - Eduardo Rodes Pastor (9406031931)
  * - Florian Cassayre (980703T092)
  */
-package se.kth.popup.lab2.minspantree;
+package se.kth.popup.lab2.shortestpath.minspantree;
 
 import se.kth.popup.Kattio;
 
@@ -22,20 +22,20 @@ public class MinimumSpanningTreeMain {
             if(n == 0 && m == 0)
                 break;
 
-            final List<MinimumSpanningTree.Edge> edges = new ArrayList<>(m);
+            final List<Edge> edges = new ArrayList<>(m);
             for(int i = 0; i < m; i++) {
                 final int u = kattio.getInt(), v = kattio.getInt(), w = kattio.getInt();
 
-                final MinimumSpanningTree.Edge edge = new MinimumSpanningTree.Edge(u, v, w);
+                final Edge edge = new Edge(u, v, w);
 
                 edges.add(edge);
             }
 
-            final MinimumSpanningTree.Solution solution = MinimumSpanningTree.mst(n, edges);
+            final Solution solution = MinimumSpanningTree.mst(n, edges);
 
             if(solution != null) {
                 kattio.println(solution.weight);
-                for(MinimumSpanningTree.Edge edge : solution.edges)
+                for(Edge edge : solution.edges)
                     kattio.println(edge.u + " " + edge.v);
             } else {
                 kattio.println("Impossible");
