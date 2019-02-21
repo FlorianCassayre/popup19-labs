@@ -32,10 +32,10 @@ def computeOriginNode(graph, status):
     :param dict graph.edges: A dictionary with the form {(edge_start, edge_end): edge_weight}
     :param dict graph.neighbors: A dictionary with the form {node: [adjacent_nodes]}
     :param int graph.origin: The starting node in the graph
-    :param dict weights: A dictionary with the form {node: current distance to starting node}
-    :param list parents: A list of size n_vertices with the current parent (or -1) for every node
-    :param set visited: A set with all the visited nodes in the graph by the Dijkstra algorithm
-    :param list priority_queue: A list with all the currently unvisited nodes, being the first one
+    :param dict status.weights: A dictionary with the form {node: current distance to starting node}
+    :param list status.parents: A list of size n_vertices with the current parent (or -1) for every node
+    :param set status.visited: A set with all the visited nodes in the graph by the Dijkstra algorithm
+    :param list status.priority_queue: A list with all the currently unvisited nodes, being the first one
     the most optimal node to explore next
     '''
     for neighbor in graph.neighbors[graph.origin]:
@@ -47,11 +47,10 @@ def computeNextNode(graph, status):
     Applies Dijkstra to every reachable node but the starting one and adds them to the visited set.
     :param dict graph.edges: A dictionary with the form {(edge_start, edge_end): edge_weight}
     :param dict graph.neighbors: A dictionary with the form {node: [adjacent_nodes]}
-    :param int graph.origin: The starting node in the graph
-    :param dict weights: A dictionary with the form {node: current distance to starting node}
-    :param list parents: A list of size n_vertices with the current parent (or -1) for every node
-    :param set visited: A set with all the visited nodes in the graph by the Dijkstra algorithm
-    :param list priority_queue: A list with all the currently unvisited nodes, being the first one
+    :param dict status.weights: A dictionary with the form {node: current distance to starting node}
+    :param list status.parents: A list of size n_vertices with the current parent (or -1) for every node
+    :param set status.visited: A set with all the visited nodes in the graph by the Dijkstra algorithm
+    :param list status.priority_queue: A list with all the currently unvisited nodes, being the first one
     the most optimal node to explore next
     '''
     vertex = heapq.heappop(status.priority_queue)[1]
@@ -64,9 +63,9 @@ def computeNextNode(graph, status):
 def updateStatus(status, neighbor, new_weight, new_parent):
     '''
     Updates the Dijkstra status variables after exploring a node.
-    :param dict weights: A dictionary with the form {node: current distance to starting node}
-    :param list parents: A list of size n_vertices with the current parent (or -1) for every node
-    :param list priority_queue: A list with all the currently unvisited nodes, being the first one
+    :param dict status.weights: A dictionary with the form {node: current distance to starting node}
+    :param list status.parents: A list of size n_vertices with the current parent (or -1) for every node
+    :param list status.priority_queue: A list with all the currently unvisited nodes, being the first one
     the most optimal node to explore next
     :param int neighbor: The current node that we just explored
     :param int new_weight: The new best distance from the starting node to the current node
