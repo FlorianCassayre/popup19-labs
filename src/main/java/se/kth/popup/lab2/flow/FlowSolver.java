@@ -55,8 +55,10 @@ public class FlowSolver {
         final long send = Math.min(excess[u], capacities[u][v] - flows[u][v]);
         flows[u][v] += send;
         flows[v][u] -= send;
-        excess[u] -= send;
-        excess[v] += send;
+        if(excess[u] < Long.MAX_VALUE)
+            excess[u] -= send;
+        if(excess[v] < Long.MAX_VALUE)
+            excess[v] += send;
     }
 
     private void relabel(int u) {
@@ -64,7 +66,8 @@ public class FlowSolver {
         for(int v = 0; v < n; v++)
             if(capacities[u][v] - flows[u][v] > 0) {
                 minHeight = Math.min(minHeight, height[v]);
-                height[u] = minHeight + 1;
+                if(minHeight < Long.MAX_VALUE)
+                    height[u] = minHeight + 1;
             }
     }
 
@@ -95,12 +98,18 @@ public class FlowSolver {
             this.flow = new ArrayList<>();
             for(int u = 0; u < n; u++)
                 for(int v = 0; v < n; v++)
-                    if(flows[u][v] > 0)
+                    if(flows[u][v] > 0) {
+                        if(flows[u][v] > capacities[u][v])
+                            throw new IllegalStateException();
+                        if(flows[v][u] > 0)
+                            throw new IllegalStateException();
                         this.flow.add(new Edge(u, v, flows[u][v]));
+                    }
+            Collections.sort(flow);
         }
     }
 
-    public static final class Edge {
+    public static final class Edge implements Comparable<Edge> {
         public final int u, v;
         public final long capacity;
 
@@ -108,6 +117,16 @@ public class FlowSolver {
             this.u = u;
             this.v = v;
             this.capacity = capacity;
+        }
+
+        @Override
+        public int compareTo(Edge that) {
+            if(this.u != that.u)
+                return Integer.compare(this.u, that.u);
+            else if(this.v != that.v)
+                return Integer.compare(this.v, that.v);
+            else
+                return Long.compare(this.capacity, that.capacity);
         }
     }
 }
