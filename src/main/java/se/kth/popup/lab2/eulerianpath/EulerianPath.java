@@ -18,16 +18,16 @@ public final class EulerianPath {
      * @param edges the edges of this graph
      * @return the order in which the vertices can be visited, or <code>null</code>
      */
-    public static List<Integer> findPath(int n, Map<Integer, ArrayDeque<Integer>> edges) {
+    public static List<Integer> findPath(int n, List<Edge> edges) {
         final int[] degree = new int[n];
-        int any = -1;
-        int edgesCount = 0;
-        for(Map.Entry<Integer, ArrayDeque<Integer>> entry : edges.entrySet()) {
-            any = entry.getKey();
-            degree[entry.getKey()] -= entry.getValue().size();
-            edgesCount += entry.getValue().size();
-            for(Integer to : entry.getValue())
-                degree[to]++;
+
+        final List<ArrayDeque<Integer>> adjacency = new ArrayList<>(n);
+        for(int i = 0; i < n; i++)
+            adjacency.add(new ArrayDeque<>());
+        for(Edge edge : edges) {
+            adjacency.get(edge.u).add(edge.v);
+            degree[edge.u]--;
+            degree[edge.v]++;
         }
 
         int pos = -1, neg = -1;
@@ -43,53 +43,63 @@ public final class EulerianPath {
             }
         }
 
-        boolean flag = false;
-        if(pos != -1 && neg != -1) {
-            edges.get(pos).add(neg);
-            flag = true;
+        boolean notHamiltonian = false;
+        if(pos != -1 && neg != -1) { // The special case where the path is not Hamiltonian (but still Eulerian)
+            adjacency.get(pos).add(neg);
+            notHamiltonian = true;
         } else if(pos != -1 || neg != -1) {
             return null;
         }
 
-        final Deque<Integer> head = new ArrayDeque<>(), tail = new ArrayDeque<>();
-        head.push(any);
+        final Deque<Integer> exploring = new ArrayDeque<>();
+        final List<Integer> history = new ArrayList<>();
 
-        while(!head.isEmpty()) {
-            while(!edges.get(head.peek()).isEmpty()) {
-                final int u = head.peek();
-                final int v = edges.get(u).pop();
-                head.push(v);
+        exploring.push(edges.get(0).u);
+
+        while(!exploring.isEmpty()) {
+            while(!adjacency.get(exploring.peek()).isEmpty()) {
+                final int u = exploring.peek();
+                final int v = adjacency.get(u).pop();
+                exploring.push(v);
             }
 
-            while(!head.isEmpty() && edges.get(head.peek()).isEmpty()) {
-                tail.push(head.pop());
+            while(!exploring.isEmpty() && adjacency.get(exploring.peek()).isEmpty()) {
+                history.add(exploring.pop());
             }
         }
 
-        final List<Integer> temp = new ArrayList<>(tail);
-        final List<Integer> fixed;
+        final List<Integer> path;
 
-        if(flag) {
-            fixed = new ArrayList<>(temp.size() - 1);
+        if(notHamiltonian) {
+            Collections.reverse(history);
+            final List<Integer> old = new ArrayList<>(history);
+            path = new ArrayList<>(old.size() - 1);
             int index = -1;
-            for(int i = 0; i < temp.size(); i++) {
-                if(temp.get(i) == pos && temp.get(i < temp.size() - 1 ? i + 1 : 0) == neg) {
+            for(int i = 0; i < old.size(); i++) {
+                if(old.get(i) == pos && old.get(i < old.size() - 1 ? i + 1 : 0) == neg) {
                     index = i;
                     break;
                 }
             }
             if(index == -1)
                 return null;
-            for(int i = index + 1; i < temp.size() - 1; i++) {
-                fixed.add(temp.get(i));
-            }
-            for(int i = 0; i <= index; i++) {
-                fixed.add(temp.get(i));
-            }
+            for(int i = index + 1; i < old.size() - 1; i++)
+                path.add(old.get(i));
+            for(int i = 0; i <= index; i++)
+                path.add(old.get(i));
         } else {
-            fixed = new ArrayList<>(tail);
+            path = new ArrayList<>(history);
         }
 
-        return fixed.size() == edgesCount + 1 ? fixed : null;
+        return path.size() == edges.size() + 1 ? path : null;
+    }
+
+    public static final class Edge {
+        public final int u, v;
+
+        public Edge(int u, int v) {
+            this.u = u;
+            this.v = v;
+        }
     }
 }

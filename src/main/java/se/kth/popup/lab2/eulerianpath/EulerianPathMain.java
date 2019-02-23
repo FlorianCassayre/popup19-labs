@@ -20,13 +20,10 @@ public class EulerianPathMain {
             if(n == 0 && m == 0)
                 break;
 
-            final Map<Integer, ArrayDeque<Integer>> edges = new HashMap<>(m);
-            for(int i = 0; i < n; i++) {
-                edges.put(i, new ArrayDeque<>());
-            }
+            final List<EulerianPath.Edge> edges = new ArrayList<>(m);
             for(int i = 0; i < m; i++) {
                 final int from = kattio.getInt(), to = kattio.getInt();
-                edges.get(from).add(to);
+                edges.add(new EulerianPath.Edge(from, to));
             }
 
             final List<Integer> solution = EulerianPath.findPath(n, edges);
