@@ -26,8 +26,6 @@ public class EulerianPathMain {
             }
             for(int i = 0; i < m; i++) {
                 final int from = kattio.getInt(), to = kattio.getInt();
-                if(!edges.containsKey(from))
-                    edges.put(from, new ArrayDeque<>());
                 edges.get(from).add(to);
             }
 
