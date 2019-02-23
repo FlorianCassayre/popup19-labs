@@ -6,7 +6,7 @@ Popup19 Labs
 | Problem | Solution |
 | :---: | :---: |
 | [Fenwick Tree](https://kth.kattis.com/problems/fenwick) | [java](src/main/java/se/kth/popup/lab1/fenwick/FenwickTree.java) |
-| [Internal Cover](https://kth.kattis.com/problems/intervalcover) | [java](src/main/java/se/kth/popup/lab1/intervalcover/IntervalCover.java) |
+| [Interval Cover](https://kth.kattis.com/problems/intervalcover) | [java](src/main/java/se/kth/popup/lab1/intervalcover/IntervalCover.java) |
 | [Knapsack](https://kth.kattis.com/problems/knapsack) | [java](src/main/java/se/kth/popup/lab1/knapsack/Knapsack.java) |
 | [Linear Equation Solver](https://kth.kattis.com/problems/equationsolver) |  |
 | [Longest Increasing Subsequence](https://kth.kattis.com/problems/longincsubseq) | [java](src/main/java/se/kth/popup/lab1/longestsequence/LIS.java) |
@@ -27,7 +27,7 @@ Popup19 Labs
 | [Maximum Flow](https://kth.kattis.com/problems/maxflow) |  |
 | [Minimum Cut](https://kth.kattis.com/problems/mincut) |  |
 | [Minimum Cost Maximum Flow](https://kth.kattis.com/problems/mincostmaxflow) |  |
-| [Eulerian Walk](https://kth.kattis.com/problems/eulerianpath) |  |
+| [Eulerian Walk](https://kth.kattis.com/problems/eulerianpath) | [java](src/main/java/se/kth/popup/lab2/eulerianpath/EulerianPathMain.java) |
 
 ### Lab 3
 
