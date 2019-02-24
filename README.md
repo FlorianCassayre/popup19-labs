@@ -22,7 +22,7 @@ Popup19 Labs
 | [Single Source Shortest Paths (non-negative weigths)](https://kth.kattis.com/problems/shortestpath1) | [java](src/main/java/se/kth/popup/lab2/shortestpath/NonNegativeWeightsMain.java) |
 | [Single Source Shortest Paths (time-table search)](https://kth.kattis.com/problems/shortestpath2) | [java](src/main/java/se/kth/popup/lab2/shortestpath/TimeTableMain.java) |
 | [Single Source Shortest Paths (negative weights)](https://kth.kattis.com/problems/shortestpath3) | [java](src/main/java/se/kth/popup/lab2/shortestpath/NegativeWeightsMain.java) |
-| [All Pairs Shortest Paths](https://kth.kattis.com/problems/allpairspath) |  |
+| [All Pairs Shortest Paths](https://kth.kattis.com/problems/allpairspath) | [java](src/main/java/se/kth/popup/lab2/shortestpath/AllPairsMain.java) |
 | [Minimal Spanning Tree](https://kth.kattis.com/problems/minspantree) | [java](src/main/java/se/kth/popup/lab2/minspantree/MinimumSpanningTreeMain.java) |
 | [Maximum Flow](https://kth.kattis.com/problems/maxflow) |  |
 | [Minimum Cut](https://kth.kattis.com/problems/mincut) |  |
