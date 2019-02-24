@@ -19,6 +19,9 @@ public final class EulerianPath {
      * @return the order in which the vertices can be visited, or <code>null</code>
      */
     public static List<Integer> findPath(int n, List<Edge> edges) {
+        if(edges.size() == 0)
+            return Collections.emptyList();
+
         final int[] degree = new int[n];
 
         final List<ArrayDeque<Integer>> adjacency = new ArrayList<>(n);
