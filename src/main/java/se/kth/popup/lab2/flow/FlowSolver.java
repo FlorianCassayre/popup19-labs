@@ -27,7 +27,7 @@ public class FlowSolver {
     public Solution maximumFlow() {
         // Great inspiration of: https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm
 
-        final LinkedList<Integer> queue = new LinkedList<>();
+        final List<Integer> queue = new ArrayList<>();
         for(int i = 0; i < n; i++)
             if(i != s && i != t)
                 queue.add(i);
@@ -37,14 +37,16 @@ public class FlowSolver {
         for(int v = 0; v < n; v++)
             push(s, v);
 
-        Iterator<Integer> it = queue.iterator();
-        while(it.hasNext()) {
-            int u = it.next();
+        int ptr = 0;
+        while(ptr < queue.size()) {
+            int u = queue.get(ptr);
             long oldHeight = height[u];
             discharge(u);
             if(height[u] > oldHeight) {
-                queue.addFirst(queue.removeLast()); // FIFO selection rule
-                it = queue.iterator();
+                Collections.rotate(queue.subList(0, ptr + 1), 1); // FIFO selection rule
+                ptr = 0;
+            } else {
+                ptr++;
             }
         }
 
