@@ -33,47 +33,47 @@ public final class EulerianPath {
             degree[edge.v]++;
         }
 
-        int pos = -1, neg = -1;
+        int pos = -1, neg = -1; // Optional starting and ending vertices (case where the tour does not form a cycle)
         for(int i = 0; i < n; i++) { // Check the degree of each vertex
             final int deg = degree[i];
             if(deg != 0) {
-                if(deg == 1 && pos == -1)
+                if(deg == 1 && pos == -1) // Ending vertex
                     pos = i;
-                else if(deg == -1 && neg == -1)
+                else if(deg == -1 && neg == -1) // Starting vertex
                     neg = i;
-                else
+                else // Impossible: two vertices of the same non-zero degree
                     return null;
             }
         }
 
-        boolean notHamiltonian = false;
-        if(pos != -1 && neg != -1) { // The special case where the path is not Hamiltonian (but still Eulerian)
-            adjacency.get(pos).add(neg);
-            notHamiltonian = true;
-        } else if(pos != -1 || neg != -1) {
+        boolean cyclic = true; // Will the tour form a cycle?
+        if(pos != -1 && neg != -1) {
+            adjacency.get(pos).add(neg); // Add a temporary fake edge to form a cycle
+            cyclic = false;
+        } else if(pos != -1 || neg != -1) { // Impossible
             return null;
         }
 
         final Deque<Integer> exploring = new ArrayDeque<>();
         final List<Integer> history = new ArrayList<>();
 
-        exploring.push(edges.get(0).u);
+        exploring.push(cyclic ? edges.get(0).u : neg); // Base case: start with any vertex that has at least one outward edge
 
-        while(!exploring.isEmpty()) {
-            while(!adjacency.get(exploring.peek()).isEmpty()) {
+        while(!exploring.isEmpty()) { // While there are still vertices to explore
+            while(!adjacency.get(exploring.peek()).isEmpty()) { // While there are still unexplored edges from this vertex
                 final int u = exploring.peek();
-                final int v = adjacency.get(u).pop();
+                final int v = adjacency.get(u).pop(); // Explore this edge and mark the destination to be explored
                 exploring.push(v);
             }
 
-            while(!exploring.isEmpty() && adjacency.get(exploring.peek()).isEmpty()) {
-                history.add(exploring.pop());
+            while(!exploring.isEmpty() && adjacency.get(exploring.peek()).isEmpty()) { // Add all the vertices to the path until an unexplored intersection is reached
+                history.add(exploring.pop()); // Append this vertex to the path
             }
         }
 
         final List<Integer> path;
 
-        if(notHamiltonian) {
+        if(!cyclic) { // Special case
             Collections.reverse(history);
             final List<Integer> old = new ArrayList<>(history);
             path = new ArrayList<>(old.size() - 1);

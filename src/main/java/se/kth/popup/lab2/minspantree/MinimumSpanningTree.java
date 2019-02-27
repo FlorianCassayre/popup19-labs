@@ -43,15 +43,15 @@ public final class MinimumSpanningTree {
         int weight = 0;
 
         while(!queue.isEmpty()) { // While there are still potential vertices to connect
-            final Edge e = queue.poll(); // The edge which vertex is the closest to that tree
+            final Edge e = queue.poll(); // The weight of the edge is minimal
 
-            final int v; // The vertex outside the tree
+            final int v; // An unvisited vertex
             if(!visited.get(e.v))
                 v = e.v;
             else if(!visited.get(e.u))
                 v = e.u;
             else
-                continue; // Would create a cycle
+                continue; // This edge would create a cycle
 
             tree.add(e);
             weight += e.weight;
