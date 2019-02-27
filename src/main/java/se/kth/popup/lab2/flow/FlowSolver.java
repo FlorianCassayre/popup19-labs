@@ -44,7 +44,7 @@ public class FlowSolver {
             discharge(u);
             if(height[u] > oldHeight) {
                 it.remove();
-                queue.addFirst(u); // FIFO selection rule
+                queue.addFirst(u); // Relabel-to-front selection rule
                 it = queue.iterator();
             }
         }
@@ -56,19 +56,17 @@ public class FlowSolver {
         final long send = Math.min(excess[u], capacities[u][v] - flows[u][v]);
         flows[u][v] += send;
         flows[v][u] -= send;
-        if(excess[u] < Long.MAX_VALUE)
-            excess[u] -= send;
-        if(excess[v] < Long.MAX_VALUE)
-            excess[v] += send;
+        excess[u] -= send;
+        excess[v] += send;
     }
 
     private void relabel(int u) {
-        long minHeight = Long.MAX_VALUE;
+        long min = Long.MAX_VALUE;
         for(int v = 0; v < n; v++)
             if(capacities[u][v] - flows[u][v] > 0) {
-                minHeight = Math.min(minHeight, height[v]);
-                if(minHeight < Long.MAX_VALUE)
-                    height[u] = minHeight + 1;
+                min = Math.min(min, height[v]);
+                if(min < Long.MAX_VALUE)
+                    height[u] = min + 1;
             }
     }
 
@@ -99,13 +97,8 @@ public class FlowSolver {
             this.flow = new ArrayList<>();
             for(int u = 0; u < n; u++)
                 for(int v = 0; v < n; v++)
-                    if(flows[u][v] > 0) {
-                        if(flows[u][v] > capacities[u][v])
-                            throw new IllegalStateException();
-                        if(flows[v][u] > 0)
-                            throw new IllegalStateException();
+                    if(flows[u][v] > 0)
                         this.flow.add(new Edge(u, v, flows[u][v]));
-                    }
             Collections.sort(flow);
         }
     }
