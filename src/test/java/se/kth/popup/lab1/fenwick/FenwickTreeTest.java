@@ -1,4 +1,4 @@
-package se.kth.popup.fenwick;
+package se.kth.popup.lab1.fenwick;
 
 import org.junit.jupiter.api.Test;
 import se.kth.popup.KattisTester;
@@ -17,13 +17,13 @@ class FenwickTreeTest extends KattisTester {
     void testRandomOperations() {
         final Random random = new Random(42);
 
-        final int n = 1000;
+        final int n = 97;
 
         final BinaryIndexedTree tree = new BinaryIndexedTree(n);
 
         int[] array = new int[n];
         for(int i = 0; i < 100000; i++) {
-            if(random.nextInt(10) > 0) { // Update
+            if(random.nextInt(2) > 0) { // Update
                 final int index = random.nextInt(array.length), delta = random.nextInt(2001) - 1000;
 
                 array[index] += delta;
@@ -40,6 +40,7 @@ class FenwickTreeTest extends KattisTester {
                 assertEquals(sum, actual);
             }
         }
+
     }
 
 }

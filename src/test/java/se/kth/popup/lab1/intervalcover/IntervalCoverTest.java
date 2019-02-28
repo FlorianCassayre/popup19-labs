@@ -1,4 +1,4 @@
-package se.kth.popup.intervalcover;
+package se.kth.popup.lab1.intervalcover;
 
 import org.junit.jupiter.api.Test;
 import se.kth.popup.KattisTester;

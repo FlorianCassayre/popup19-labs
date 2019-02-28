@@ -1,4 +1,4 @@
-package se.kth.popup.unionfind;
+package se.kth.popup.lab1.unionfind;
 
 import se.kth.popup.KattisTester;
 
