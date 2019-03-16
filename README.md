@@ -33,7 +33,14 @@ Popup19 Labs
 
 | Problem | Solution |
 | :---: | :---: |
-| []() |  |
+| [Substring search](https://kth.kattis.com/problems/stringmatching) |  |
+| [Multiple substring search](https://kth.kattis.com/problems/stringmultimatching) |  |
+| [Suffix Sorting](https://kth.kattis.com/problems/suffixsorting) |  |
+| [Modular Arithmetic](https://kth.kattis.com/problems/modulararithmetic) |  |
+| [Chinese Remainder Theorem (relatively prime moduli)](https://kth.kattis.com/problems/chineseremainder) |  |
+| [Chinese Remainder Theorem (arbitrary moduli)](https://kth.kattis.com/problems/generalchineseremainder) |  |
+| [Prime sieve](https://kth.kattis.com/problems/primesieve) |  |
+| [Fast computation of small recurrences](https://kth.kattis.com/problems/linearrecurrence) |  |
 
 ### Lab 4
 
