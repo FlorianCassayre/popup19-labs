@@ -8,13 +8,16 @@
 package se.kth.popup.lab3.arithmetic;
 
 public class ModularArithmetic {
-    private final long n;
+    public final long n;
 
     /**
      * Construct a new modular group of order <code>n</code>.
      * @param n the order of the group
      */
     public ModularArithmetic(long n) {
+        if(n <= 0)
+            throw new IllegalArgumentException();
+
         this.n = n;
     }
 
@@ -25,7 +28,7 @@ public class ModularArithmetic {
      * @return the result of the addition
      */
     public long add(long a, long b) {
-        return (a + b) % n;
+        return normalize(a + b);
     }
 
     /**
@@ -46,6 +49,9 @@ public class ModularArithmetic {
      */
     public long multiply(long a, long b) {
         // The main challenge here is to prevent overflow
+
+        a = normalize(a);
+        b = normalize(b);
 
         long acc = 0;
         while(b > 0) {
@@ -80,6 +86,8 @@ public class ModularArithmetic {
      */
     public long inverse(long a) {
         // Extended Euclidean algorithm
+
+        a = normalize(a);
 
         long t = 0, nt = 1, r = n, nr = a;
 
