@@ -1,9 +1,10 @@
 package se.kth.popup.lab3.string;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public final class SuffixArray {
-    private final int[] sa;
+    private final int[] array;
 
     /**
      * Constructs the suffix array for that string.
@@ -12,48 +13,53 @@ public final class SuffixArray {
     public SuffixArray(String string) {
         final int n = string.length();
 
-        this.sa = new int[n];
+        this.array = new int[n];
 
         final int[][] p = new int[log(n) + 1][n];
-        final int[] first = new int[n], second = new int[n], index = new int[n];
-        final Integer[] order = new Integer[n];
+        final Tuple[] tuples = new Tuple[n];
+
+        final Comparator<Tuple> comparator = (a, b) -> {
+            if(a.first != b.first)
+                return Integer.compare(a.first, b.first);
+            else if(a.second != b.second)
+                return Integer.compare(a.second, b.second);
+            else
+                return Integer.compare(a.index, b.index);
+        };
 
         for(int i = 0; i < n; i++) {
             p[0][i] = string.charAt(i);
-            order[i] = i;
+            tuples[i] = new Tuple();
         }
 
         int step = 1;
 
-        for(int i = 0; 1 << i < n; i++, step++) {
+        int pow = 1;
+        for(int i = 0; pow < n; i++, step++) {
             for(int j = 0; j < n; j++) {
-                index[order[j]] = j;
-                first[order[j]] = p[i][j];
-                second[order[j]] = (j + (1 << i) < n ? p[i][j + (1 << i)] : -1);
+                final Tuple tuple = tuples[j];
+                tuple.index = j;
+                tuple.first = p[i][j];
+                tuple.second = (j + pow < n ? p[i][j + pow] : -1);
             }
 
-            Arrays.sort(order, (a, b) -> {
-                if(first[a] != first[b])
-                    return Integer.compare(first[a], first[b]);
-                else if(second[a] != second[b])
-                    return Integer.compare(second[a], second[b]);
-                else
-                    return Integer.compare(index[a], index[b]);
-            });
+            Arrays.sort(tuples, comparator);
 
             for(int j = 0; j < n; j++) {
-                p[i + 1][index[order[j]]] =
-                        ((j > 0 && first[order[j]] == first[order[j - 1]] && second[order[j]] == second[order[j - 1]])
-                        ? p[i + 1][index[order[j - 1]]]
+                p[i + 1][tuples[j].index] =
+                        ((j > 0 && tuples[j].first == tuples[j - 1].first && tuples[j].second == tuples[j - 1].second)
+                        ? p[i + 1][tuples[j - 1].index]
                         : j);
             }
+
+            pow <<= 1;
         }
 
         step--;
 
-        for(int i = 0; i < n && n > 1; i++) {
-            sa[p[step][i]] = i;
-        }
+        if(n > 1)
+            for(int i = 0; i < n; i++)
+                array[p[step][i]] = i;
     }
 
     private static int log(int n) {
@@ -69,6 +75,10 @@ public final class SuffixArray {
      * @return the transformed index
      */
     public int getSuffix(int i) {
-        return sa[i];
+        return array[i];
+    }
+
+    private final class Tuple {
+        private int first, second, index;
     }
 }
