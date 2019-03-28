@@ -40,7 +40,7 @@ Popup19 Labs
 | [Chinese Remainder Theorem (relatively prime moduli)](https://kth.kattis.com/problems/chineseremainder) | [java](src/main/java/se/kth/popup/lab3/arithmetic/ChineseRemainderMain.java) |
 | [Chinese Remainder Theorem (arbitrary moduli)](https://kth.kattis.com/problems/generalchineseremainder) |  |
 | [Prime sieve](https://kth.kattis.com/problems/primesieve) |  |
-| [Fast computation of small recurrences](https://kth.kattis.com/problems/linearrecurrence) |  |
+| [Fast computation of small recurrences](https://kth.kattis.com/problems/linearrecurrence) | [java](src/main/java/se/kth/popup/lab3/recurrence/LinearRecurrenceMain.java) |
 
 ### Lab 4
 
