@@ -35,7 +35,7 @@ Popup19 Labs
 | :---: | :---: |
 | [Substring search](https://kth.kattis.com/problems/stringmatching) |  |
 | [Multiple substring search](https://kth.kattis.com/problems/stringmultimatching) |  |
-| [Suffix Sorting](https://kth.kattis.com/problems/suffixsorting) |  |
+| [Suffix Sorting](https://kth.kattis.com/problems/suffixsorting) | [C](suffix_sorting.c) |
 | [Modular Arithmetic](https://kth.kattis.com/problems/modulararithmetic) | [java](src/main/java/se/kth/popup/lab3/arithmetic/ModularArithmeticMain.java) |
 | [Chinese Remainder Theorem (relatively prime moduli)](https://kth.kattis.com/problems/chineseremainder) | [java](src/main/java/se/kth/popup/lab3/arithmetic/ChineseRemainderMain.java) |
 | [Chinese Remainder Theorem (arbitrary moduli)](https://kth.kattis.com/problems/generalchineseremainder) |  |
