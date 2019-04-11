@@ -33,10 +33,10 @@ Popup19 Labs
 
 | Problem | Solution |
 | :---: | :---: |
-| [Substring search](https://kth.kattis.com/problems/stringmatching) |  |
+| [Substring search](https://kth.kattis.com/problems/stringmatching) | [java](src/main/java/se/kth/popup/lab3/string/StringMatchingMain.java) |
 | [Multiple substring search](https://kth.kattis.com/problems/stringmultimatching) |  |
-| [Suffix Sorting](https://kth.kattis.com/problems/suffixsorting) | [C](suffix_sorting.c) |
 | [Modular Arithmetic](https://kth.kattis.com/problems/modulararithmetic) | [java](src/main/java/se/kth/popup/lab3/arithmetic/ModularArithmeticMain.java) |
+| [Suffix Sorting](https://kth.kattis.com/problems/suffixsorting) | [C](suffix_sorting.c) |
 | [Chinese Remainder Theorem (relatively prime moduli)](https://kth.kattis.com/problems/chineseremainder) | [java](src/main/java/se/kth/popup/lab3/arithmetic/ChineseRemainderMain.java) |
 | [Chinese Remainder Theorem (arbitrary moduli)](https://kth.kattis.com/problems/generalchineseremainder) |  |
 | [Prime sieve](https://kth.kattis.com/problems/primesieve) | [java](src/main/java/se/kth/popup/lab3/arithmetic/PrimeSieveMain.java) |
