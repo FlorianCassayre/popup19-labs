@@ -1,3 +1,10 @@
+/*
+ * Course: Problem Solving and Programming under Pressure (DD2458)
+ * Type: Laboratory exercises
+ * Authors:
+ * - Eduardo Rodes Pastor (9406031931)
+ * - Florian Cassayre (980703T092)
+ */
 package se.kth.popup.lab3.arithmetic;
 
 public final class ChineseRemainder {
