@@ -46,4 +46,11 @@ Popup19 Labs
 
 | Problem | Solution |
 | :---: | :---: |
-| []() |  |
+| [Polygon Area](https://kth.kattis.com/problems/polygonarea) | [java](src/main/java/se/kth/popup/lab4/geometry/polygon/PolygonAreaMain.java) |
+| [Point in Polygon](https://kth.kattis.com/problems/pointinpolygon) |  |
+| [Line Segment Intersection](https://kth.kattis.com/problems/segmentintersection) |  |
+| [Line Segment Distance](https://kth.kattis.com/problems/segmentdistance) |  |
+| [Closest Pair (uniform)](https://kth.kattis.com/problems/closestpair1) |  |
+| [Closest Pair (general)](https://kth.kattis.com/problems/closestpair2) |  |
+| [Convex Hull](https://kth.kattis.com/problems/convexhull) |  |
+| [Maximum Number of Colinear Points](https://kth.kattis.com/problems/maxcolinear) |  |
