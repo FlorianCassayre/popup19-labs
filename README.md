@@ -46,7 +46,7 @@ Popup19 Labs
 
 | Problem | Solution |
 | :---: | :---: |
-| [String Hashing](https://kth.kattis.com/problems/hashing) |  |
+| [String Hashing](https://kth.kattis.com/problems/hashing) | [java](src/main/java/se/kth/popup/lab4/hash/SubstringHashingMain.java) |
 | [Polygon Area](https://kth.kattis.com/problems/polygonarea) | [java](src/main/java/se/kth/popup/lab4/geometry/polygon/PolygonAreaMain.java) |
 | [Point in Polygon](https://kth.kattis.com/problems/pointinpolygon) |  |
 | [Line Segment Intersection](https://kth.kattis.com/problems/segmentintersection) |  |
