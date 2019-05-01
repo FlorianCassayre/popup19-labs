@@ -2,10 +2,9 @@ package se.kth.popup.lab4.geometry.polygon;
 
 import se.kth.popup.lab4.geometry.Vector;
 
-import java.util.Locale;
 import java.util.Scanner;
 
-public class PolygonAreaMain {
+public class PolygonInsideMain {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
 
@@ -19,12 +18,21 @@ public class PolygonAreaMain {
             for(int i = 0; i < n; i++) {
                 points[i] = new Vector(scanner.nextInt(), scanner.nextInt());
             }
-
             final Polygon polygon = new Polygon(points);
-            final double algebraic = polygon.getAlgebraicArea();
 
-            System.out.print(algebraic >= 0.0 ? "CCW" : "CW");
-            System.out.println(String.format(Locale.US, " %.1f", Math.abs(algebraic)));
+            final int m = scanner.nextInt();
+            for(int i = 0; i < m; i++) {
+                final Vector point = new Vector(scanner.nextInt(), scanner.nextInt());
+
+                final int result = polygon.isInside(point);
+
+                if(result == 0)
+                    System.out.println("on");
+                else if(result > 0)
+                    System.out.println("in");
+                else if(result < 0)
+                    System.out.println("out");
+            }
         }
 
         scanner.close();
