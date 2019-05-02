@@ -49,7 +49,7 @@ Popup19 Labs
 | [String Hashing](https://kth.kattis.com/problems/hashing) | [java](src/main/java/se/kth/popup/lab4/hash/SubstringHashingMain.java) |
 | [Polygon Area](https://kth.kattis.com/problems/polygonarea) | [java](src/main/java/se/kth/popup/lab4/geometry/polygon/PolygonAreaMain.java) |
 | [Point in Polygon](https://kth.kattis.com/problems/pointinpolygon) |  |
-| [Line Segment Intersection](https://kth.kattis.com/problems/segmentintersection) |  |
+| [Line Segment Intersection](https://kth.kattis.com/problems/segmentintersection) | [java](src/main/java/se/kth/popup/lab4/geometry/line/LineSegmentIntersectionMain.java) |
 | [Line Segment Distance](https://kth.kattis.com/problems/segmentdistance) |  |
 | [Closest Pair (uniform)](https://kth.kattis.com/problems/closestpair1) |  |
 | [Closest Pair (general)](https://kth.kattis.com/problems/closestpair2) |  |

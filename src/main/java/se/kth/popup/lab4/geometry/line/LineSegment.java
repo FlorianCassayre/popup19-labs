@@ -28,12 +28,23 @@ public class LineSegment {
         this.lz = -(lx * a.x + ly * a.y);
     }
 
+    public boolean isPoint() {
+        return a.equals(b);
+    }
+
     public Result intersection(LineSegment that) {
         // 3D cross product
         final long cx = this.ly * that.lz - this.lz * that.ly, cy = this.lz * that.lx - this.lx * that.lz, cz = this.lx * that.ly - this.ly * that.lx;
 
-        if(cz == 0) { // Lines are parallel
-            if(this.lx * that.a.x + this.ly * that.a.y + this.lz == 0) { // Lines are on the same axis
+        if(cz == 0) { // Lines are parallel or one of them is a point
+            final boolean ap = this.isPoint(), bp = that.isPoint();
+            final LineSegment la = ap ? that : this, lb = ap ? this : that;
+            if(ap && bp) { // Both segments are points
+                if(this.a.equals(that.a))
+                    return new SingleIntersection(this.a.x, this.a.y);
+                else
+                    return new NoIntersection();
+            } else if(la.lx * lb.a.x + la.ly * lb.a.y + la.lz == 0) { // Lines are on the same axis
                 final Vector[] points = {this.a, this.b, that.a, that.b};
                 Arrays.sort(points, COMPARATOR);
 

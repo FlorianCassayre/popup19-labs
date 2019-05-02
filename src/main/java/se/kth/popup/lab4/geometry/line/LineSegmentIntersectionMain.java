@@ -6,13 +6,14 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 
 public class LineSegmentIntersectionMain {
+    private static final NumberFormat FORMATTER = new DecimalFormat("#0.00", new DecimalFormatSymbols(Locale.US));
+
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
-
-        final NumberFormat formatter = new DecimalFormat("#0.00", new DecimalFormatSymbols(Locale.US));
 
         final int n = scanner.nextInt();
 
@@ -24,14 +25,18 @@ public class LineSegmentIntersectionMain {
                 System.out.println("none");
             } else if(result instanceof LineSegment.SingleIntersection) {
                 final LineSegment.SingleIntersection single = (LineSegment.SingleIntersection) result;
-                System.out.println(formatter.format(single.x) + " " + formatter.format(single.y));
+                System.out.println(format(single.x) + " " + format(single.y));
             } else if(result instanceof LineSegment.InfiniteIntersection) {
                 final LineSegment.InfiniteIntersection multiple = (LineSegment.InfiniteIntersection) result;
-                System.out.println(formatter.format(multiple.x1) + " " + formatter.format(multiple.y1) + " " + formatter.format(multiple.x2) + " " + formatter.format(multiple.y2));
+                System.out.println(format(multiple.x1) + " " + format(multiple.y1) + " " + format(multiple.x2) + " " + format(multiple.y2));
             }
         }
 
         scanner.close();
+    }
+
+    private static String format(double d) {
+        return FORMATTER.format(d).replace("-0.00", "0.00");
     }
 
     private static LineSegment readLine(Scanner scanner) {
