@@ -3,14 +3,25 @@ package se.kth.popup.lab4.geometry.line;
 import se.kth.popup.lab4.geometry.Vector;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class LineSegment {
+    private static final Comparator<Vector> COMPARATOR = (a, b) -> {
+        if(a.x != b.x)
+            return Integer.compare(a.x, b.x);
+        else
+            return Integer.compare(a.y, b.y);
+    };
+
     public final Vector a, b;
     private final long lx, ly, lz;
 
     public LineSegment(Vector a, Vector b) {
-        this.a = a;
-        this.b = b;
+        final Vector[] points = {a, b};
+        Arrays.sort(points, COMPARATOR);
+
+        this.a = points[0];
+        this.b = points[1];
 
         this.lx = b.y - a.y;
         this.ly = a.x - b.x;
@@ -24,12 +35,7 @@ public class LineSegment {
         if(cz == 0) { // Lines are parallel
             if(this.lx * that.a.x + this.ly * that.a.y + this.lz == 0) { // Lines are on the same axis
                 final Vector[] points = {this.a, this.b, that.a, that.b};
-                Arrays.sort(points, (a, b) -> {
-                    if(a.x != b.x)
-                        return Integer.compare(a.x, b.x);
-                    else
-                        return Integer.compare(a.y, b.y);
-                });
+                Arrays.sort(points, COMPARATOR);
 
                 if(points[1].equals(points[2])) {
                     return new SingleIntersection(points[1].x, points[2].y); // Intersection is a single point
