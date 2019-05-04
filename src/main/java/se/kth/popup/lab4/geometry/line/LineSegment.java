@@ -8,9 +8,9 @@ import java.util.Comparator;
 public class LineSegment {
     private static final Comparator<Vector> COMPARATOR = (a, b) -> {
         if(a.x != b.x)
-            return Integer.compare(a.x, b.x);
+            return Long.compare(a.x, b.x);
         else
-            return Integer.compare(a.y, b.y);
+            return Long.compare(a.y, b.y);
     };
 
     public final Vector a, b;

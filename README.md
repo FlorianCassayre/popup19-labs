@@ -54,4 +54,4 @@ Popup19 Labs
 | [Closest Pair (uniform)](https://kth.kattis.com/problems/closestpair1) |  |
 | [Closest Pair (general)](https://kth.kattis.com/problems/closestpair2) |  |
 | [Convex Hull](https://kth.kattis.com/problems/convexhull) |  |
-| [Maximum Number of Colinear Points](https://kth.kattis.com/problems/maxcolinear) |  |
+| [Maximum Number of Collinear Points](https://kth.kattis.com/problems/maxcolinear) | [java](src/main/java/se/kth/popup/lab4/geometry/points/MaximumCollinearPointsMain.java) |

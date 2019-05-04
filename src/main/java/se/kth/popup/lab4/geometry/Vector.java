@@ -3,9 +3,9 @@ package se.kth.popup.lab4.geometry;
 import java.util.Objects;
 
 public class Vector {
-    public final int x, y;
+    public final long x, y;
 
-    public Vector(int x, int y) {
+    public Vector(long x, long y) {
         this.x = x;
         this.y = y;
     }
@@ -22,11 +22,11 @@ public class Vector {
         return new Vector(this.x * k, this.y * k);
     }
 
-    public int dot(Vector that) {
+    public long dot(Vector that) {
         return this.x * that.x + this.y * that.y;
     }
 
-    public int cross(Vector that) {
+    public long cross(Vector that) {
         return this.x * that.y - this.y * that.x;
     }
 
