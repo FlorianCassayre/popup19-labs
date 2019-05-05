@@ -42,17 +42,16 @@ public class Polygon {
      * @return <code>-1</code> if outside, <code>0</code> if on boundary, <code>1</code> if inside
      */
     public int isInside(Vector point) {
-        final double precision = 1E-10;
-
         double angle = 0.0;
         for(int i = 0; i < points.length; i++) {
-            final Vector p = points[i].subtract(point), q = points[(i + 1) % points.length].subtract(point);
-            final double a = p.angle(q);
-            if(Math.abs(Math.abs(a) - Math.PI) < precision)
+            final Vector p = points[i], q = points[(i + 1) % points.length];
+            final Vector u = point.subtract(p), v = q.subtract(p);
+            final long dot = u.dot(v);
+            if(u.cross(v) == 0 && dot >= 0 && dot <= v.dot(v)) // Collinear + Included => Boundary
                 return 0;
+            final double a = p.subtract(point).angle(q.subtract(point));
             angle += a;
         }
-        System.out.println(angle);
         return Math.abs(angle) > Math.PI ? 1 : -1;
     }
 }
