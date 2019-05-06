@@ -53,5 +53,5 @@ Popup19 Labs
 | [Line Segment Distance](https://kth.kattis.com/problems/segmentdistance) |  |
 | [Closest Pair (uniform)](https://kth.kattis.com/problems/closestpair1) |  |
 | [Closest Pair (general)](https://kth.kattis.com/problems/closestpair2) |  |
-| [Convex Hull](https://kth.kattis.com/problems/convexhull) |  |
-| [Maximum Number of Collinear Points](https://kth.kattis.com/problems/maxcolinear) | [java](src/main/java/se/kth/popup/lab4/geometry/points/MaximumCollinearPointsMain.java) |
+| [Convex Hull](https://kth.kattis.com/problems/convexhull) | [java](src/main/java/se/kth/popup/lab4/geometry/point/ConvexHull.java) |
+| [Maximum Number of Collinear Points](https://kth.kattis.com/problems/maxcolinear) | [java](src/main/java/se/kth/popup/lab4/geometry/point/MaximumCollinearPointsMain.java) |
